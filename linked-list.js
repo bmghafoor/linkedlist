@@ -66,7 +66,20 @@ class LinkedList {
 
   /** shift(): return & remove first item. */
 
-  shift() {}
+  shift() {
+    if (this.length === 1) {
+      let nodeToRemove = this.head.val;
+      this.length -= 1;
+      this.head = null;
+      this.tail = null;
+      return nodeToRemove;
+    }
+
+    let nodeToRemove = this.head.val;
+    this.head = this.head.next;
+    this.length -= 1;
+    return nodeToRemove;
+  }
 
   /** getAt(idx): get val at idx. */
 
