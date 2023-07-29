@@ -113,7 +113,25 @@ class LinkedList {
 
   /** insertAt(idx, val): add node w/val before idx. */
 
-  insertAt(idx, val) {}
+  insertAt(idx, val) {
+    if (this.head === null || this.length <= idx) {
+      this.push(val);
+    }
+    let count = 0;
+    let currentNode = this.head;
+    while (currentNode.next) {
+      // has to be +1 since we need to assign the next value to it and the preivious node of the new Node next value should be set to new Node
+      if (count + 1 === idx) {
+        const newNode = new Node(val);
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
+        this.length += 1;
+        break;
+      }
+      currentNode = currentNode.next;
+      count += 1;
+    }
+  }
 
   /** removeAt(idx): return & remove item at idx, */
 
