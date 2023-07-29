@@ -44,7 +44,25 @@ class LinkedList {
 
   /** pop(): return & remove last item. */
 
-  pop() {}
+  pop() {
+    if (this.length === 1) {
+      let nodeToRemove = this.head.val;
+      this.length -= 1;
+      this.head = null;
+      this.tail = null;
+      return nodeToRemove;
+    }
+    let currentNode = this.head;
+    let nodeToRemove = this.tail.val;
+    while (currentNode.next.next) {
+      currentNode = currentNode.next;
+    }
+    this.tail = currentNode;
+    //  Otherwise, the old tail node's "next" property will still point to the second-to-last node, causing the list to remain connected to the removed node.
+    this.tail.next = null;
+    this.length -= 1;
+    return nodeToRemove;
+  }
 
   /** shift(): return & remove first item. */
 
